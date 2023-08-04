@@ -1,0 +1,109 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-container input[type="text"],
+.form-container input[type="date"] {
+  width: 95%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.form-container button {
+  background-color: #514e7f;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.stock-data {
+  margin-bottom: 20px;
+}
+
+.stock-data table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stock-data th,
+.stock-data td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.charts-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.line-chart,
+.bar-chart {
+  flex: 0 0 50%;
+  margin: 0 10px;
+}
+
+/* StockData.css */
+.stock-data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.heading {
+  color: #514e7f;
+  font-size: 40px;
+  margin-bottom: 0;
+}
+
+.data-points {
+  display: flex;
+  justify-content: center;
+}
+
+.data-points p,
+.stock-volume {
+  font-size: 20px;
+  margin-right: 0;
+}
+.data-points p strong,
+.stock-volume strong {
+  margin: 0 10px;
+  font-size: 35px;
+  color: #514e7f;
+}
