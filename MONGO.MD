@@ -22,7 +22,7 @@
     ```
     const <MODEL REFERENCE NAME> = mongoose.model("<MODEL NAME>", <SCHEMA NAME>);
     ```
-    >Note: The <MODEL NAME> mentioned here will be pluralized and if a collection doesn't exist in the same name a new
+    >Note: The "<MODEL NAME>" mentioned here will be pluralized and if a collection doesn't exist in the same name a new
     >collection will be created on first insert.
 4. Function to insert documents into the collection
     ```
