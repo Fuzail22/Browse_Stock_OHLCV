@@ -2,6 +2,7 @@
 <p align=center> Understanding Object data modelling </p>
 
 ## Commands
+
 1. Connecting to mongo db using connection string
     ```
     mongoose.connect("mongodb://localhost:27017/<DB NAME>", {
