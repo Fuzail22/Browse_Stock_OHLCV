@@ -1,5 +1,3 @@
-// DO NOT MODIFY ANYTHING HERE, THE PLACE WHERE YOU NEED TO WRITE CODE IS MARKED CLEARLY BELOW
-
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -32,7 +30,6 @@ app.use(bodyParser.json());
 app.enable("trust proxy");
 
 app.post("/api/fetchStockData", async (req, res) => {
-  // YOUR CODE GOES HERE, PLEASE DO NOT EDIT ANYTHING OUTSIDE THIS FUNCTION
   const symbol = req.body.symbol.toUpperCase();
   const selectedDate = req.body.selectedDate;
   await axios

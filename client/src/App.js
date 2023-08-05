@@ -3,6 +3,7 @@ import StockForm from "./StockForm";
 import StockData from "./StockData";
 import LineStockChart from "./LineStockChart";
 import BarStockChart from "./BarStockChart";
+import SearchBar from "./SearchBar";
 import "./App.css";
 
 function App() {
@@ -72,6 +73,10 @@ function App() {
           </div>
         </div>
       )}
+      <div>
+        <h1>Stock Search</h1>
+        <SearchBar />
+      </div>
     </div>
   );
 }
