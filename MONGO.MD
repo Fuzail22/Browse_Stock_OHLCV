@@ -22,6 +22,8 @@
     ```
     const <MODEL REFERENCE NAME> = mongoose.model("<MODEL NAME>", <SCHEMA NAME>);
     ```
+    >Note: The <MODEL NAME> mentioned here will be pluralized and if a collection doesn't exist in the same name a new
+    >collection will be created on first insert.
 4. Function to insert documents into the collection
     ```
     async function saveToDatabase(ObjectName) {
@@ -36,8 +38,12 @@
     ```
 5. To insert documents,
     ```
-    await saveTickersToDatabase(ObjectName);
+    await saveToDatabase(ObjectName);
     ```
-
+6. To search for documents,
+    ```
+    const results = await <MODEL REFERENCE NAME>.find({ <KEY>: <VALUE>  }).select("<KEY>"); 
+    ```
+    
 ## Reference
 [Mongoose ODM Basics](https://www.mongodb.com/developer/languages/javascript/mongoose-versus-nodejs-driver/)
