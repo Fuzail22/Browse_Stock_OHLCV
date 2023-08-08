@@ -29,13 +29,11 @@ const Stock = mongoose.model("Ticker", tickerSchema);
 app.use(cors());
 app.use(express.json());
 
-// Search endpoint
 app.get("/api/search", async (req, res) => {
   try {
     const searchQuery = req.query.q;
     const regex = new RegExp(searchQuery, "i");
     const stocks = await Stock.find({ name: regex }).select("name");
-
     res.json(stocks);
   } catch (error) {
     console.error("Error searching stocks:", error.message);
