@@ -40,14 +40,37 @@ In web Development an event is any action that happens in the browser or more sp
         console.log("Button cLicked")
         })
         ```
-        >  There are 2 parameters to addEventlistner method
+        >  There are 2 parameters to the addEventlistner method
         >  - First Parameter: The event(eg:click) itself.
         >  - Second Parameter: The [callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function), which will be called when the event occurs.
 
-  2. What is event listner properties?
-     - In vanilla javascript event listners properties are properties available for the objects we create for an HTML element.
+  2. What is event handlers properties?
+     - In vanilla javascript event handler properties are properties available for the objects we create for an HTML element.
         ```
         const btn = document.querySelector("button");
         ```
-     -  
-      
+        ```
+        btn.onclick = ()=>{
+        console.log("Button Clicked");
+        }
+        ```
+  3. what is event handler HTML attributes?
+     - An event handler HTMl attribute is also called an inline event handler.
+     - An event handler HTML attribute are provided by the HTMl itself and it can used as follows
+     ```
+     <!--HTML File--> 
+
+     <button onclick="eventHandlerFunc()">Click Me</button>
+     ```
+     ```
+     <!--JS File--> 
+
+     function eventHandlerFunnc(){
+     console.log("Button Clicked");
+     }
+     ```
+     > An <Strong> event hanler</Strong> in any function that is called when a event is triggered and captured by either of the three.
+
+  
+  4. Which one to use method or the property?
+    
