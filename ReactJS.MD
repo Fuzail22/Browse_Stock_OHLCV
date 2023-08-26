@@ -42,7 +42,7 @@ In web Development an event is any action that happens in the browser or more sp
         ```
         >  There are 2 parameters to addEventlistner method
         >  - First Parameter: The event(eg:click) itself.
-        >  - Second Parameter: The (callbackfunction)[https://developer.mozilla.org/en-US/docs/Glossary/Callback_function]         >                      ,which will be called when the event occurs.
+        >  - Second Parameter: The [callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function)         >                      ,which will be called when the event occurs.
 
   2. What is event listner properties?
      - In vanilla javascript event listners properties are properties available for the objects we create for an HTML element.
