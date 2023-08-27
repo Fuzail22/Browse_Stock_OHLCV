@@ -65,12 +65,14 @@ In web Development an event is any action that happens in the browser or more sp
      ```
      <!--JS File--> 
 
-     function eventHandlerFunnc(){
+     function eventHandlerFunc(){
      console.log("Button Clicked");
      }
      ```
-     > An <Strong> event hanler</Strong> in any function that is called when a event is triggered and captured by either of the three.
+  4. What is an event handler?
+     - An event handler is a function that is called when a event is triggered and captured by either of the three(event listner, event handler property or event handler HTML attribute).
+     - The above <Strong>eventHandlerFunc</Strong> function is an example of event handler.
 
   
-  4. Which one to use method or the property?
+  5. Which one to use method or the property?
     
