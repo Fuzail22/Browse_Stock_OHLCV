@@ -139,4 +139,7 @@ In web Development an event is any action that happens in the browser or more sp
    - An event handler is a function that is called when a event is triggered and captured by either of the three(event listner, event handler property or event handler HTML attribute).
    - The above <Strong>eventHandlerFunc</Strong> function is an example of event handler.
 
-5. Which one to use method or the property?
+5. Which one to use method, property or the attribute?
+   - Usage of event listner is recommended over the other 2 for complex large scale projects.
+   - Event listner has the ability to call more than one function for any given event whereas event handler property doesn't.
+   - Event handler HTML attribute is age old offering and it's always good to seperate HTML from JS so avoid using this.
