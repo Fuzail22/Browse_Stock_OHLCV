@@ -64,7 +64,7 @@ The application was designed based on following edge cases and constraints that 
    4. add social sharing using which people can share interesting insights.
    5. create a user watchlist where users can watch they performance of favourite stocks like a feed without needing to search and understand.
 
-<p align="center"> # Learning and understanding React states,Hooks,events, event listners, event listner attributes, event handlers and functions used in this project. </p>
+<h1 align="center"> Learning and understanding React states,Hooks,events, event listners, event listner attributes, event handlers and functions used in this project. </h1>
 
 ## States
 ### searchResults
