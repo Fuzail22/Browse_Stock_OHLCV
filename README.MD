@@ -143,3 +143,9 @@ In web Development an event is any action that happens in the browser or more sp
    - Usage of event listner is recommended over the other 2 for complex large scale projects.
    - Event listner has the ability to call more than one function for any given event whereas event handler property doesn't.
    - Event handler HTML attribute is age old offering and it's always good to seperate HTML from JS so avoid using this.
+6. Why do we use event attribute in React if it's not best practise?
+   - React takes care of it and converts this usage into event listerner.
+   - A we use attribute in JSX which is not just plain HTML.
+7. How to differentiate between an HTML event attribute vs react event attribute?
+   - React event attributes are camel Cased(onClick) whereas HTML's are small case(onclick).
+   
