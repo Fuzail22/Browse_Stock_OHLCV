@@ -75,8 +75,8 @@ The application was designed based on following edge cases and constraints that 
 ## Hooks
 ### Effect Hook
     ```
-   useEffect(()=>{
-   const handleOutsideClick = (e) => {
+    useEffect(()=>{
+    const handleOutsideClick = (e) => {
     //the content as in SearchBar Component
     };
     document.addEventListener("click", handleOutsideClick);
