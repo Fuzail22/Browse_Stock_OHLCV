@@ -83,8 +83,8 @@ The application was designed based on following edge cases and constraints that 
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
-   },[])
-   ```
+    },[])
+    ```
    - This gets triggered only once and as soon as the component is moounted.
    - The content inside return gets executed when the component unmounts. In our case event listner is removed thereby avoiding memery leaks.
 ## Functions
