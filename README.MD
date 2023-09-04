@@ -77,16 +77,20 @@ The application was designed based on following edge cases and constraints that 
     ```
     useEffect(()=>{
     const handleOutsideClick = (e) => {
-    //the content as in SearchBar Component
+       if (searchContainerRef.current && !searchContainerRef.current.contains(e.target)) {
+        setShowDropdown(false);
+      }
     };
     document.addEventListener("click", handleOutsideClick);
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
-    },[])
+    },[]);
     ```
    - This gets triggered only once and as soon as the component is moounted.
    - The content inside return gets executed when the component unmounts. In our case event listner is removed thereby avoiding memery leaks.
+   - ```searchContainerRef.current``` checks if searchContainerRef has the node element been set to it.
+   - ```!searchContainerRef.current.contains(e.target)``` checks if the element clicked is not inside the refered div element.
 ## Functions
 ### fetchSearchResults
 - To get all relevant names of stocks, the name can be passed and retrieved in 2 ways,
