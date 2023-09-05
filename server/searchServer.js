@@ -1,11 +1,14 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
 const app = express();
-const PORT = 5000;
 
-mongoose.connect("mongodb://localhost:27017/TestSearch", {
+const PORT = process.env.PORT || 5000;
+const connectString = process.env.connectString;
+
+mongoose.connect(connectString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -33,7 +36,7 @@ app.get("/api/search", async (req, res) => {
   try {
     const searchQuery = req.query.q;
     const regex = new RegExp(searchQuery, "i");
-    const stocks = await Stock.find({ name: regex }).select("name");
+    const stocks = await Stock.find({ name: regex }).select("name ticker");
     res.json(stocks);
   } catch (error) {
     console.error("Error searching stocks:", error.message);

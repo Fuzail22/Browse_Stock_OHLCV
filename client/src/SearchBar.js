@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./SearchResults.css";
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValueSymbol, setSelectedValueSymbol] = useState(null);
   const searchContainerRef = useRef(null);
+  const selectedRef = useRef(null);
 
   useEffect(() => {
     const fetchSearchResults = async () => {
@@ -29,6 +31,8 @@ const SearchBar = () => {
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
+    props.setSymbol("");
+    props.cleanOScreen();
     setShowDropdown(true);
     setSelectedValue(null);
   };
@@ -37,7 +41,9 @@ const SearchBar = () => {
     setShowDropdown(true);
   };
 
-  const handleItemClick = (value) => {
+  const handleItemClick = (value, ticker) => {
+    props.setSymbol(ticker);
+    props.cleanOScreen();
     setSelectedValue(value);
     setSearchQuery(value);
     setShowDropdown(false);
@@ -51,8 +57,10 @@ const SearchBar = () => {
           (result) => result.name === prevValue
         );
         if (index >= 0 && index < searchResults.length - 1) {
+          setSelectedValueSymbol(searchResults[index + 1].ticker);
           return searchResults[index + 1].name;
         }
+        setSelectedValueSymbol(searchResults[0].ticker);
         return searchResults[0].name;
       });
     } else if (e.key === "ArrowUp") {
@@ -62,14 +70,24 @@ const SearchBar = () => {
           (result) => result.name === prevValue
         );
         if (index > 0) {
+          setSelectedValueSymbol(searchResults[index - 1].ticker);
           return searchResults[index - 1].name;
         }
+        setSelectedValueSymbol(searchResults[searchResults.length - 1].ticker);
         return searchResults[searchResults.length - 1].name;
       });
-    } else if (e.key === "Enter") {
+    } else if (e.key === "Enter" && selectedValue != null) {
       e.preventDefault();
+      props.setSymbol(selectedValueSymbol);
+      props.cleanOScreen();
       setSearchQuery(selectedValue);
       setShowDropdown(false);
+    }
+    if (selectedRef.current) {
+      selectedRef.current.scrollIntoView({
+        behavior: "instant",
+        block: "center",
+      });
     }
   };
 
@@ -92,7 +110,9 @@ const SearchBar = () => {
 
   return (
     <div ref={searchContainerRef} className="search-container">
+      <label htmlFor="stockName">Stock Name:</label>
       <input
+        id="stockName"
         type="text"
         placeholder="Search Stock Name"
         value={searchQuery}
@@ -107,7 +127,8 @@ const SearchBar = () => {
               <li
                 key={stock._id}
                 className={stock.name === selectedValue ? "selected" : ""}
-                onClick={() => handleItemClick(stock.name)}
+                ref={stock.name === selectedValue ? selectedRef : null}
+                onClick={() => handleItemClick(stock.name, stock.ticker)}
               >
                 {stock.name}
               </li>

@@ -1,6 +1,9 @@
+require("dotenv").config();
 const axios = require("axios");
 const mongoose = require("mongoose");
-const apiKey = "ejTMclW2dM_RdTKJPvLfmdktVDXxZndu";
+const APIkey = process.env.polygonAPIKey;
+const connectString = process.env.connectString;
+const apiKey = APIkey;
 const baseUrl = "https://api.polygon.io/v3/reference/tickers";
 const tickerSchema = new mongoose.Schema({
   name: String,
@@ -62,7 +65,7 @@ async function getAllTickers(baseUrl, apiKey) {
 }
 
 mongoose
-  .connect("mongodb://localhost:27017/BrowseStock", {
+  .connect(connectString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

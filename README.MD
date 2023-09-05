@@ -5,6 +5,7 @@
 ![Frontend](FrontendSmall.png)
 
 ### Want to watch how it works?
+
 [Ckick Here](https://www.loom.com/share/9a3deb318c1c42ca838f018a570002cf?sid=d5bfe72c-31ce-45f1-8def-d87078d88c65)
 
 ![Frontend with output](FrontendSmallWithInput.png)
@@ -63,3 +64,195 @@ The application was designed based on following edge cases and constraints that 
    3. adding stock screener where user can filter based on yield or market cap
    4. add social sharing using which people can share interesting insights.
    5. create a user watchlist where users can watch they performance of favourite stocks like a feed without needing to search and understand.
+
+<h1 align="center"> Learning and understanding React states,Hooks,events, event listners, event listner attributes, event handlers and functions used in this project. </h1>
+
+## States
+
+### searchResults
+
+- searchResults is initially set to an empty array([]) using useState Hook.
+- setSearchResults- is a function provided by useState Hook to update the searchResults value.
+- findIndex is inbuilt method provided to arrays by javascript.
+
+## References
+
+### searchContainerRef
+
+- Used to close the drop the dropdown when clicked outside of the container.
+
+### selectedRef
+
+- Used to scroll into view the current element selected using arrowKeys.
+
+## Hooks
+
+### useState
+
+- To create a state variable and set the initial state.
+
+### useRef
+
+- To create a reference varibale which doesn't renrender dependent DOM elements and set the initial state.
+
+### Effect Hook
+
+    ```
+    useEffect(()=>{
+    const handleOutsideClick = (e) => {
+       if (searchContainerRef.current && !searchContainerRef.current.contains(e.target)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("click", handleOutsideClick);
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+    },[]);
+    ```
+
+- This gets triggered only once and as soon as the component is mounted, only once because the dependent array is empty.
+- The content inside return gets executed when the component unmounts. In our case event listner is removed thereby avoiding memery leaks.
+- `searchContainerRef.current` checks if searchContainerRef has the node element been set to it.
+- `!searchContainerRef.current.contains(e.target)` checks if the element clicked is not inside the refered div element.
+
+## Functions
+
+### fetchSearchResults
+
+- To get all relevant names of stocks, the name can be passed and retrieved in 2 ways,
+  - Query
+    - frontend: `axios.get(api/fetch/?name=${name})`
+    - backend:
+      ```
+      app.get("api/fetch/",(response,request)=>{
+        name=req.query.name
+      })
+      ```
+  - Path:
+    - frontend: axios.get(api/fetch/${name})
+    - backend:
+      ```
+      app.get("api/fetch/:name",(response,request)=>{
+        name=req.params.name
+      })
+      ```
+
+## Events
+
+In web Development an event is any action that happens in the browser or more specifically inside the DOM.
+
+- example: mouse click, mouse hover, keyboard key press etc.
+
+1. what is event listners?
+
+   - In vanilla javascript (that is plain JS without any framworks) event listners are methods available for the objects we create for an HTML element.
+     ```
+     const btn = document.querySelector("button");
+     ```
+     > Here <stronger>btn</stronger> is the object created for the button element and these object contain methods called eventlistners to listen events (eg: mouseclick) which can be accessed as below.
+     ```
+     btn.addEventListner("click",
+     ()=>{
+     console.log("Button cLicked")
+     })
+     ```
+     > There are 2 parameters to the addEventlistner method
+     >
+     > - First Parameter: The event(eg:click) itself.
+     > - Second Parameter: The [callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function), which will be called when the event occurs.
+
+2. What is event handlers properties?
+   - In vanilla javascript event handler properties are properties available for the objects we create for an HTML element.
+     ```
+     const btn = document.querySelector("button");
+     ```
+     ```
+     btn.onclick = ()=>{
+     console.log("Button Clicked");
+     }
+     ```
+3. what is event handler HTML attributes?
+
+   - An event handler HTMl attribute is also called an inline event handler.
+   - An event handler HTML attribute are provided by the HTMl itself and it can used as follows
+
+   ```
+   <!--HTML File-->
+
+   <button onclick="eventHandlerFunc()">Click Me</button>
+   ```
+
+   ```
+   <!--JS File-->
+
+   function eventHandlerFunc(){
+   console.log("Button Clicked");
+   }
+   ```
+
+4. What is an event handler?
+
+   - An event handler is a function that is called when a event is triggered and captured by either of the three(event listner, event handler property or event handler HTML attribute).
+   - The above <Strong>eventHandlerFunc</Strong> function is an example of event handler.
+
+5. Which one to use method, property or the attribute?
+   - Usage of event listner is recommended over the other 2 for complex large scale projects.
+   - Event listner has the ability to call more than one function for any given event whereas event handler property doesn't.
+   - Event handler HTML attribute is age old offering and it's always good to seperate HTML from JS so avoid using this.
+6. Why do we use event attribute in React if it's not best practise?
+   - React takes care of it and converts this usage into event listerner.
+   - A we use attribute in JSX which is not just plain HTML.
+7. How to differentiate between an HTML event attribute vs react event attribute?
+   - React event attributes are camel Cased(onClick) whereas HTML's are small case(onclick).
+
+<h1 align=center> MONGOOSE ODM </h1>
+<p align=center> Understanding Object data modelling </p>
+
+## Commands
+
+1. To Connect to mongo db using connection string
+   ```
+   mongoose.connect("mongodb://localhost:27017/<DB NAME>", {
+   useNewUrlParser: true,
+   useUnifiedTopology: true,
+   });
+   ```
+2. To create a schema for the model
+   ```
+   const <SCHEMA NAME> = mongoose.Schema({
+   key1: ValueDataType,
+   key2: ValueDataType,
+   keyn: ValueDataType
+   });
+   ```
+3. To create a model for interacting with the DB
+   ```
+   const <MODEL REFERENCE NAME> = mongoose.model("<MODEL NAME>", <SCHEMA NAME>);
+   ```
+   > Note: The "MODEL NAME" mentioned here will be pluralized and if a collection doesn't exist in the same name a new
+   > collection will be created on first insert.
+4. Function to insert documents into the collection
+   ```
+   async function saveToDatabase(ObjectName) {
+     try {
+       await <MODEL REFERENCE NAME>.insertMany(ObjectName);
+       console.log("Saved to the database.");
+     } catch (error) {
+       console.error("Error saving to the database:", error.message);
+       throw error;
+     }
+   }
+   ```
+5. To insert documents,
+   ```
+   await saveToDatabase(ObjectName);
+   ```
+6. To search for documents,
+   ```
+   const results = await <MODEL REFERENCE NAME>.find({ <KEY>: <VALUE>  }).select("<KEY>");
+   ```
+
+## Reference
+
+[Mongoose ODM Basics](https://www.mongodb.com/developer/languages/javascript/mongoose-versus-nodejs-driver/)
