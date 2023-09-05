@@ -70,9 +70,18 @@ The application was designed based on following edge cases and constraints that 
 ### searchResults
 - searchResults is initially set to an empty array([]) using useState Hook.
 - setSearchResults- is a function provided by useState Hook to update the searchResults value.
-- findIndex is inbuilt method provided
+- findIndex is inbuilt method provided to arrays by javascript.
 
+## References
+### searchContainerRef
+- Used to close the drop the dropdown when clicked outside of the container.
+### selectedRef
+- Used to scroll into view the current element selected using arrowKeys.
 ## Hooks
+### useState
+- To create a state variable and set the initial state.
+### useRef
+- To create a reference varibale which doesn't renrender dependent DOM elements and set the initial state.
 ### Effect Hook
     ```
     useEffect(()=>{
