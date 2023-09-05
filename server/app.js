@@ -1,11 +1,46 @@
-// DO NOT MODIFY ANYTHING HERE, THE PLACE WHERE YOU NEED TO WRITE CODE IS MARKED CLEARLY BELOW
-
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const axios = require("axios");
+const cors = require("cors");
+const mongoose = require("mongoose");
 
 const app = express();
+
+const APIkey = process.env.polygonAPIKey;
+const connectString = process.env.connectString;
+
+mongoose.connect(connectString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const tickerSchema = new mongoose.Schema({
+  name: String,
+  active: String,
+  cik: String,
+  composite_figi: String,
+  currency_name: String,
+  last_updated_utc: String,
+  locale: String,
+  market: String,
+  primary_exchange: String,
+  share_class_figi: String,
+  ticker: String,
+  type: String,
+});
+const Stock = mongoose.model("Ticker", tickerSchema);
+app.use(cors());
+app.get("/api/search", async (req, res) => {
+  try {
+    const searchQuery = req.query.q;
+    const regex = new RegExp(searchQuery, "i");
+    const stocks = await Stock.find({ name: regex }).select("name ticker");
+    res.json(stocks);
+  } catch (error) {
+    console.error("Error searching stocks:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 app.use(function (req, res, next) {
   const allowedOrigins = ["http://localhost:3000"];
@@ -32,12 +67,11 @@ app.use(bodyParser.json());
 app.enable("trust proxy");
 
 app.post("/api/fetchStockData", async (req, res) => {
-  // YOUR CODE GOES HERE, PLEASE DO NOT EDIT ANYTHING OUTSIDE THIS FUNCTION
   const symbol = req.body.symbol.toUpperCase();
   const selectedDate = req.body.selectedDate;
   await axios
     .get(
-      `https://api.polygon.io/v1/open-close/${symbol}/${selectedDate}?adjusted=true&apiKey=ejTMclW2dM_RdTKJPvLfmdktVDXxZndu`
+      `https://api.polygon.io/v1/open-close/${symbol}/${selectedDate}?adjusted=true&apiKey=${APIkey}`
     )
     .then((response) => {
       const { open, close, high, low, volume } = response.data;

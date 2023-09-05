@@ -1,4 +1,6 @@
+require("dotenv").config();
 const axios = require("axios");
+const APIkey = process.env.polygonAPIKey;
 
 async function getAllTickers(baseUrl, apiKey) {
   try {
@@ -25,7 +27,7 @@ async function getAllTickers(baseUrl, apiKey) {
   }
 }
 
-const apiKey = "ejTMclW2dM_RdTKJPvLfmdktVDXxZndu";
+const apiKey = APIkey;
 const baseUrl = "https://api.polygon.io/v3/reference/tickers";
 
 getAllTickers(baseUrl, apiKey)

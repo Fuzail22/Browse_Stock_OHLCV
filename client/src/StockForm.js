@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import SearchBar from "./SearchBar";
 function StockForm({ onSubmit, cleanOScreen }) {
   const [symbol, setSymbol] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
@@ -37,6 +38,7 @@ function StockForm({ onSubmit, cleanOScreen }) {
 
   return (
     <form onSubmit={handleSubmit}>
+      <SearchBar setSymbol={setSymbol} cleanOScreen={cleanOScreen} />
       <div>
         <label htmlFor="symbol">Stock Symbol:</label>
         <input
