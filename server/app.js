@@ -10,7 +10,7 @@ const app = express();
 const APIkey = process.env.polygonAPIKey;
 const connectString = process.env.connectString;
 const cloudConnectString = process.env.cloudConnectString;
-console.log("connect string is ",cloudConnectString);
+console.log("connect string is ", cloudConnectString);
 mongoose
   .connect(cloudConnectString, {
     useNewUrlParser: true,

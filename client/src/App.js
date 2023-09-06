@@ -17,13 +17,16 @@ function App() {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/fetchStockData", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestData),
-      });
+      const response = await fetch(
+        "https://browse-stock-ohlcv-server.onrender.com/api/fetchStockData",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
+        }
+      );
       if (!response.ok) {
         setStockData(null);
         const errorData = await response.json();
