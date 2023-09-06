@@ -263,6 +263,7 @@ In web Development an event is any action that happens in the browser or more sp
 - To make auto deploy work for new commits install the app to your repository.
 - click [here](https://github.com/apps/render) to install
 - environment variable values must not be in double quotes.
+- as this is a free deployment, server automatically spun down after 15 minutes of inactivity, therefore on first new requests to the server after inactivity there is a slight delay in response for both stock data and stock name search dropdownn
 > The backend (server) is set to auto deploy (CD-continous deployment) when new changes are been commited to main branch.
 > Exluding the changes made to getALLTickets, StoreAllTickets, searchServer.
 
