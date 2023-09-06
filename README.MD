@@ -2,6 +2,8 @@
 
 <p align="center">The application displays the Open, High, Low, Close and Volume values along with a line and bar graph visualization for a given stock symbol/ticker on a given date handling appropriate edge cases.</p>
 
+## live: https://fuzail22.github.io/Browse_Stock_OHLCV
+
 ![Frontend](FrontendSmall.png)
 
 ### Want to watch how it works?
@@ -263,4 +265,7 @@ In web Development an event is any action that happens in the browser or more sp
 - environment variable values must not be in double quotes.
 > The backend (server) is set to auto deploy (CD-continous deployment) when new changes are been commited to main branch.
 > Exluding the changes made to getALLTickets, StoreAllTickets, searchServer.
+
+# GitHub Pages
+- The frontend is production built using ```npm run build``` and deployed using ```gh-pages -d build```
 
