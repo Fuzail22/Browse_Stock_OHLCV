@@ -256,3 +256,8 @@ In web Development an event is any action that happens in the browser or more sp
 ## Reference
 
 [Mongoose ODM Basics](https://www.mongodb.com/developer/languages/javascript/mongoose-versus-nodejs-driver/)
+
+## Render
+- To make auto deploy work for new commits install the app to your repository.
+- click [here](https://github.com/apps/render) to install
+- environment variable values must not be in double quotes.
