@@ -15,7 +15,7 @@ const SearchBar = (props) => {
     const fetchSearchResults = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/search?q=${searchQuery}`
+          `https://browse-stock-ohlcv-server.onrender.com/api/search?q=${searchQuery}`
         );
         setSearchResults(response.data);
       } catch (error) {
