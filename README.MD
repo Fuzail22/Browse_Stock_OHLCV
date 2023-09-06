@@ -2,7 +2,8 @@
 
 <p align="center">The application displays the Open, High, Low, Close and Volume values along with a line and bar graph visualization for a given stock symbol/ticker on a given date handling appropriate edge cases.</p>
 
-<div><p style="color:blue">live:</p>https://fuzail22.github.io/Browse_Stock_OHLCV</div>
+## live: https://fuzail22.github.io/Browse_Stock_OHLCV
+
 ![Frontend](FrontendSmall.png)
 
 ### Want to watch how it works?
