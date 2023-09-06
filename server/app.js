@@ -9,37 +9,10 @@ const app = express();
 
 const APIkey = process.env.polygonAPIKey;
 const connectString = process.env.connectString;
-const CloudConnectString = process.env.CloudConnectString;
-console.log("connect string is ",process.env.CloudConnectString);
+const cloudConnectString = process.env.cloudConnectString;
+console.log("connect string is ",process.env.cloudConnectString);
 mongoose
-  .connect(`${CloudConnectString}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("mongoDB connection successfull");
-  })
-  .catch((error) =>
-    console.log(
-      "The following error occured while trying to connect to mmongoDB",
-      error
-    )
-  );
-mongoose
-  .connect(`${CloudConnectString}`, {
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("mongoDB connection successfull");
-  })
-  .catch((error) =>
-    console.log(
-      "The following error occured while trying to connect to mmongoDB",
-      error
-    )
-  );
-mongoose
-  .connect(process.env.CloudConnectString, {
+  .connect(`${cloudConnectString}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
