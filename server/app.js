@@ -9,10 +9,10 @@ const app = express();
 
 const APIkey = process.env.polygonAPIKey;
 const connectString = process.env.connectString;
-const CloudConnectString = process.env.CloudConnectString;
-
+const cloudConnectString = process.env.cloudConnectString;
+console.log("connect string is ", cloudConnectString);
 mongoose
-  .connect(`${CloudConnectString}`, {
+  .connect(cloudConnectString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
