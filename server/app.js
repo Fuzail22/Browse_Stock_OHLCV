@@ -9,11 +9,21 @@ const app = express();
 
 const APIkey = process.env.polygonAPIKey;
 const connectString = process.env.connectString;
-
-mongoose.connect(connectString, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const CloudConnectString = process.env.CloudConnectString;
+mongoose
+  .connect(CloudConnectString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("mongoDB connection successfull");
+  })
+  .catch((error) =>
+    console.log(
+      "The following error occured while trying to connect to mmongoDB",
+      error
+    )
+  );
 const tickerSchema = new mongoose.Schema({
   name: String,
   active: String,
@@ -28,13 +38,14 @@ const tickerSchema = new mongoose.Schema({
   ticker: String,
   type: String,
 });
-const Stock = mongoose.model("Ticker", tickerSchema);
+const Stock = mongoose.model("StockList", tickerSchema);
 app.use(cors());
 app.get("/api/search", async (req, res) => {
   try {
     const searchQuery = req.query.q;
     const regex = new RegExp(searchQuery, "i");
     const stocks = await Stock.find({ name: regex }).select("name ticker");
+    console.log("Retrieved From DB");
     res.json(stocks);
   } catch (error) {
     console.error("Error searching stocks:", error.message);
@@ -42,20 +53,20 @@ app.get("/api/search", async (req, res) => {
   }
 });
 
-app.use(function (req, res, next) {
-  const allowedOrigins = ["http://localhost:3000"];
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  res.header("Access-Control-Allow-credentials", true);
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
-  next();
-});
+// app.use(function (req, res, next) {
+//   const allowedOrigins = ["http://localhost:3000"];
+//   const origin = req.headers.origin;
+//   if (allowedOrigins.includes(origin)) {
+//     res.setHeader("Access-Control-Allow-Origin", origin);
+//   }
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+//   );
+//   res.header("Access-Control-Allow-credentials", true);
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
+//   next();
+// });
 
 app.use(
   bodyParser.urlencoded({
@@ -66,6 +77,13 @@ app.use(bodyParser.json());
 
 app.enable("trust proxy");
 
+app.get("/", (req, res) => {
+  res
+    .status(200)
+    .send(
+      "Welcome to Browse_Stock_OHLC-V Endpoint home, API server is up and running"
+    );
+});
 app.post("/api/fetchStockData", async (req, res) => {
   const symbol = req.body.symbol.toUpperCase();
   const selectedDate = req.body.selectedDate;
@@ -76,7 +94,7 @@ app.post("/api/fetchStockData", async (req, res) => {
     .then((response) => {
       const { open, close, high, low, volume } = response.data;
       const data = { open, close, high, low, volume };
-      console.log(data);
+      // console.log(data);
       res.status(200).json(data);
     })
     .catch(async (error) => {
