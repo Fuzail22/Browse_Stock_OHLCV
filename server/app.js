@@ -12,20 +12,6 @@ const connectString = process.env.connectString;
 const cloudConnectString = process.env.cloudConnectString;
 console.log("connect string is ",cloudConnectString);
 mongoose
-  .connect(`${cloudConnectString}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("mongoDB connection successfull");
-  })
-  .catch((error) =>
-    console.log(
-      "The following error occured while trying to connect to mmongoDB",
-      error
-    )
-  );
-mongoose
   .connect(cloudConnectString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
