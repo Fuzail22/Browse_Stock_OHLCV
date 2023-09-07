@@ -4,13 +4,11 @@
 
 ## live: https://fuzail22.github.io/Browse_Stock_OHLCV
 
-![Frontend](FrontendSmall.png)
-
 ### Want to watch how it works?
 
 [Ckick Here](https://www.loom.com/share/9a3deb318c1c42ca838f018a570002cf?sid=d5bfe72c-31ce-45f1-8def-d87078d88c65)
 
-![Frontend with output](FrontendSmallWithInput.png)
+![Frontend with output](FrontendSmallWithInput2.png)
 
 ## Constraints
 
