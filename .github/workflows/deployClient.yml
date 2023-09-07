@@ -11,7 +11,7 @@ on:
         name:
           description: 'Mannual dispatch'
           required: true
-          default: 'World'
+          default: 'deploy'
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -30,14 +30,14 @@ jobs:
         working-directory: ./client
         run: npm run build
 
-      - name: Deploy
-        run: |
-          npm install -g gh-pages
-          npx gh-pages -d './client/build'
       # - name: Deploy
-      #   uses: crazy-max/ghaction-github-pages@v1
-      #   with:
-      #     target_branch: gh-pages
-      #     build_dir: ./client/build
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     npm install -g gh-pages
+      #     npx gh-pages -d './client/build'
+      - name: Deploy
+        uses: crazy-max/ghaction-github-pages@v1
+        with:
+          target_branch: gh-pages
+          build_dir: ./client/build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
