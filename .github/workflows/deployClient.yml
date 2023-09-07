@@ -6,7 +6,12 @@ on:
       - main
     paths:
       - 'client/**'
-      
+  workflow_dispatch:
+      inputs:
+        name:
+          description: 'Mannual dispatch'
+          required: true
+          default: 'World'
 jobs:
   deploy:
     runs-on: ubuntu-latest
