@@ -60,6 +60,18 @@ function App() {
           <h3>{errorDisplay}</h3>
         </div>
       )}
+      {!errorDisplay && !stockData && (
+        <p style={{ color: "red", textAlign: "justify", fontSize: "2vh" }}>
+          <div
+            style={{ color: "#514e7f", textAlign: "center", fontSize: "3vh" }}
+          >
+            Welcome to Browse Stock!
+          </div>
+          If this is your first time visiting (or) if you've been inactive for
+          15 minutes, please note that there may be a slight delay of up to 2
+          minutes for the first request as our free server needs to start up.
+        </p>
+      )}
       {stockData && (
         <div>
           <div className="stock-data">
