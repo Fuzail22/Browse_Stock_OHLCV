@@ -38,7 +38,7 @@ function App() {
       // console.log(data);
       setStockData(data);
     } catch (error) {
-      console.error("The following error occured during fetch: ", error);
+      console.error("The following error occured during stock data fetch: ", error);
     }
   };
   const cleanOutputScreen = () => {
