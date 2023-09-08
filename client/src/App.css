@@ -50,31 +50,8 @@ h1 {
 }
 
 .stock-data {
-  margin-bottom: 20px;
-}
-
-.stock-data table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.stock-data th,
-.stock-data td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ccc;
-}
-
-.charts-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.line-chart,
-.bar-chart {
-  flex: 0 0 50%;
-  margin: 0 10px;
+  margin-bottom: 3vh;
+  width: 95vw;
 }
 
 /* StockData.css */
@@ -106,4 +83,19 @@ h1 {
   margin: 0 10px;
   font-size: 35px;
   color: #514e7f;
+}
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+  .heading {
+    font-size: 9.5vw;
+  }
+  .data-points p,
+  .stock-volume {
+    font-size: 4vw;
+  }
+
+  .data-points p strong,
+  .stock-volume strong {
+    font-size: 7vw;
+  }
 }

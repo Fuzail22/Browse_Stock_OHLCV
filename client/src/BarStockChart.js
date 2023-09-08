@@ -7,6 +7,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
 const BarStockChart = ({ data }) => {
@@ -18,8 +19,8 @@ const BarStockChart = ({ data }) => {
   ];
 
   return (
-    <div>
-      <BarChart width={600} height={400} data={chartData}>
+    <ResponsiveContainer width="95%" height={250}>
+      <BarChart data={chartData}>
         <XAxis dataKey="name" />
         <YAxis interval={0} />
         <CartesianGrid strokeDasharray="3 3" />
@@ -27,7 +28,7 @@ const BarStockChart = ({ data }) => {
         <Legend />
         <Bar dataKey="value" fill="#8884d8" />
       </BarChart>
-    </div>
+    </ResponsiveContainer>
   );
 };
 
