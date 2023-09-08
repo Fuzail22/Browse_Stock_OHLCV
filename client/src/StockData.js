@@ -6,7 +6,7 @@ function StockData({ data }) {
       <h2 className="heading">Stock Data</h2>
       <div className="data-points">
         <p>
-          Open:<strong> {data.open}</strong>
+          Open: <strong>{data.open}</strong>
         </p>
         <p>
           High: <strong>{data.high}</strong>

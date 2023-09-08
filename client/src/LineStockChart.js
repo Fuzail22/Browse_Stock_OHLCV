@@ -7,6 +7,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
 const LineStockChart = ({ data }) => {
@@ -18,8 +19,8 @@ const LineStockChart = ({ data }) => {
   ];
 
   return (
-    <div>
-      <LineChart width={600} height={400} data={chartData}>
+    <ResponsiveContainer width="95%" height={250}>
+      <LineChart data={chartData}>
         <XAxis dataKey="name" />
         <YAxis />
         <CartesianGrid strokeDasharray="3 3" />
@@ -27,7 +28,7 @@ const LineStockChart = ({ data }) => {
         <Legend />
         <Line type="monotone" dataKey="value" stroke="#8884d8" />
       </LineChart>
-    </div>
+    </ResponsiveContainer>
   );
 };
 
