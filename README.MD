@@ -266,5 +266,5 @@ In web Development an event is any action that happens in the browser or more sp
 > Exluding the changes made to getALLTickets, StoreAllTickets, searchServer.
 
 # GitHub Pages
-- The frontend is production built using ```npm run build``` and deployed using ```gh-pages -d build``` by triggering ```npm run deploy```.
+- The React frontend is production built using ```npm run build``` and auto deployed using github workflow.
 
