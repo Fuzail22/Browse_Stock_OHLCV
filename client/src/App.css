@@ -84,6 +84,12 @@ h1 {
   font-size: 35px;
   color: #514e7f;
 }
+.disabled-content {
+  pointer-events: none;
+  opacity: 0.9; /* Adjust opacity to visually indicate the content is disabled */
+  cursor: not-allowed;
+}
+
 /* Media query for mobile screens */
 @media (max-width: 768px) {
   .heading {
