@@ -40,10 +40,10 @@ input[type="text"] {
 }
 
 .search-dropdown .selected {
-  background-color: #007bff;
+  background-color: #726eae;
   color: #fff;
 }
 
 .search-dropdown .selected:hover {
-  background-color: #0070cc;
+  background-color: #514e7f;
 }
