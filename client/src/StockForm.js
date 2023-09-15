@@ -46,6 +46,7 @@ function StockForm({ onSubmit, cleanOScreen }) {
           id="symbol"
           value={symbol}
           onChange={handleSymbolChange}
+          placeholder="Search Stock Symbol"
           required
         />
       </div>

@@ -36,6 +36,7 @@ function App() {
     };
 
     try {
+      setLoading(true);
       const response = await fetch(
         "https://browse-stock-ohlcv-server.onrender.com/api/fetchStockData",
         {
@@ -55,6 +56,7 @@ function App() {
       setErrorDisplay(null);
       const data = await response.json();
       // console.log(data);
+      setLoading(false);
       setStockData(data);
     } catch (error) {
       console.error("The following error occured during fetch: ", error);
@@ -101,9 +103,7 @@ function App() {
           )}
           {stockData && (
             <div>
-              <div className="stock-data">
-                <StockData data={stockData} />
-              </div>
+              <StockData data={stockData} />
               <div className="charts-container">
                 <div className="line-chart">
                   <LineStockChart data={stockData} />

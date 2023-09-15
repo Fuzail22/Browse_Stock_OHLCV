@@ -19,7 +19,7 @@ const LineStockChart = ({ data }) => {
   ];
 
   return (
-    <ResponsiveContainer width="95%" height={250}>
+    <ResponsiveContainer width="80%" aspect={1 / 1}>
       <LineChart data={chartData}>
         <XAxis dataKey="name" />
         <YAxis />
