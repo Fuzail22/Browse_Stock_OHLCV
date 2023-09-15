@@ -47,3 +47,10 @@ input[type="text"] {
 .search-dropdown .selected:hover {
   background-color: #514e7f;
 }
+
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+  .search-dropdown li {
+    font-size: 5vw;
+  }
+}
