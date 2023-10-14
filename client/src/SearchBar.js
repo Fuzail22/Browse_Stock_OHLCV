@@ -1,7 +1,21 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
 import axios from "axios";
-import "./SearchResults.css";
-
+import { debounce } from "debounce";
+import {
+  List,
+  CellMeasurer,
+  CellMeasurerCache,
+  AutoSizer,
+} from "react-virtualized";
+import "./SearchBar.css";
+let requestCount = 0;
+// let responseCount = 0;
 const SearchBar = (props) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -10,24 +24,86 @@ const SearchBar = (props) => {
   const [selectedValueSymbol, setSelectedValueSymbol] = useState(null);
   const searchContainerRef = useRef(null);
   const selectedRef = useRef(null);
-
-  useEffect(() => {
-    const fetchSearchResults = async () => {
-      try {
-        const response = await axios.get(
-          `https://browse-stock-ohlcv-server.onrender.com/api/search?q=${searchQuery}`
-        );
-        setSearchResults(response.data);
-      } catch (error) {
-        console.error("Error searching stocks:", error.message);
-      }
+  const cache = new CellMeasurerCache({
+    fixedWidth: true,
+    defaultHeight: 10,
+  });
+  function calcHeight() {
+    if (searchResults.length == 1) {
+      return 40;
+    } else if (searchResults.length == 2) {
+      return 80;
+    } else if (searchResults.length == 3) {
+      return 120;
+    }
+    return 160;
+  }
+  function renderRow({ index, key, style, parent }) {
+    return (
+      <CellMeasurer
+        key={key}
+        cache={cache}
+        parent={parent}
+        columnIndex={0}
+        rowIndex={index}
+      >
+        {({ registerChild }) => (
+          <li
+            style={style}
+            className="row"
+            ref={registerChild}
+            onClick={() =>
+              handleItemClick(
+                searchResults[index].name,
+                searchResults[index].ticker
+              )
+            }
+          >
+            {searchResults[index].name}
+          </li>
+        )}
+      </CellMeasurer>
+    );
+  }
+  let fetchSearchResults = useCallback((searchQuery) => {
+    requestCount++;
+    console.log("Request no:" + requestCount + " " + searchQuery);
+    const config = {
+      headers: {
+        "X-Request-Id": requestCount,
+      },
     };
+    axios
+      .get(
+        `https://browse-stock-ohlcv-server.onrender.com/api/search?q=${searchQuery}`,
+        config
+      )
+      .then((response) => {
+        const reqid = response.headers["x-request-id"];
+        // responseCount++;
+        // console.log("Response no:" + responseCount + " Id:" + reqid);
+        if (reqid == requestCount) {
+          // console.log("displaying");
+          setSearchResults(response.data);
+        }
+      })
+      .catch((error) => {
+        // responseCount++;
+        console.error("Error searching stocks:", error.message);
+      });
+  }, []);
+
+  const debouncedfetch = useMemo(() => {
+    return debounce(fetchSearchResults, 500);
+  }, [fetchSearchResults]);
+
+  useMemo(() => {
     if (searchQuery.trim() !== "") {
-      fetchSearchResults();
+      debouncedfetch(searchQuery);
     } else {
       setSearchResults([]);
     }
-  }, [searchQuery]);
+  }, [searchQuery, debouncedfetch]);
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
@@ -113,7 +189,7 @@ const SearchBar = (props) => {
       <label htmlFor="stockName">Stock Name:</label>
       <input
         id="stockName"
-        type="text"
+        type="search"
         placeholder="Search Stock Name"
         value={searchQuery}
         onChange={handleChange}
@@ -122,18 +198,19 @@ const SearchBar = (props) => {
       />
       {showDropdown && searchResults.length > 0 && (
         <div className="search-dropdown">
-          <ul>
-            {searchResults.map((stock) => (
-              <li
-                key={stock._id}
-                className={stock.name === selectedValue ? "selected" : ""}
-                ref={stock.name === selectedValue ? selectedRef : null}
-                onClick={() => handleItemClick(stock.name, stock.ticker)}
-              >
-                {stock.name}
-              </li>
-            ))}
-          </ul>
+          <AutoSizer disableHeight>
+            {({ width }) => (
+              <List
+                width={width}
+                height={calcHeight()}
+                deferredMeasurementCache={cache}
+                rowHeight={cache.rowHeight}
+                rowRenderer={renderRow}
+                rowCount={searchResults.length}
+                overscanRowCount={3}
+              />
+            )}
+          </AutoSizer>
         </div>
       )}
     </div>

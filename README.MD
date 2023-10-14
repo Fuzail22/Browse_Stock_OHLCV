@@ -258,13 +258,25 @@ In web Development an event is any action that happens in the browser or more sp
 [Mongoose ODM Basics](https://www.mongodb.com/developer/languages/javascript/mongoose-versus-nodejs-driver/)
 
 # Render
+
 - To make auto deploy work for new commits install the app to your repository.
 - click [here](https://github.com/apps/render) to install
 - environment variable values must not be in double quotes.
 - as this is a free deployment, server automatically spun down after 15 minutes of inactivity, therefore on first new requests to the server after inactivity there is a slight delay in response for both stock data and stock name search dropdownn
-> The backend (server) is set to auto deploy (CD-continous deployment) when new changes are been commited to main branch.
-> Exluding the changes made to getALLTickets, StoreAllTickets, searchServer.
+  > The backend (server) is set to auto deploy (CD-continous deployment) when new changes are been commited to main branch.
+  > Exluding the changes made to getALLTickets, StoreAllTickets, searchServer.
 
 # GitHub Pages
-- The React frontend is production built using ```npm run build``` and auto deployed using github workflow.
 
+- The React frontend is production built using `npm run build` and auto deployed using github workflow.
+
+### Issues
+
+1. high number of api calls for search - use debouncing.(SOLVED)
+2. incorrect search result since response is out of order - display only the last request made using reqid(SOLVED)
+3. app gets crashed or hanged due to high volume of data(>34000) that is rendered - reduce the amount of data rendered at any point of time using react-virtualized(SOLVED)
+4. padding causes overflow in the dropdown - use boxsizing property(SOLVED)
+
+### Lesser Important Issues
+
+1. Why searchbar inside stock Form? can't we place it inside formcontainer for a common css

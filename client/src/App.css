@@ -85,7 +85,7 @@ h1 {
 }
 .disabled-content {
   pointer-events: none;
-  opacity: 0.9; /* Adjust opacity to visually indicate the content is disabled */
+  opacity: 0.9;
   cursor: not-allowed;
 }
 
@@ -108,7 +108,7 @@ h1 {
   .data-points p,
   .stock-volume {
     font-size: 4vw;
-    text-align: start;
+    /* text-align: start; //not required */
   }
 
   .data-points p strong,
