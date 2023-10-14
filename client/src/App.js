@@ -11,7 +11,6 @@ function App() {
   const [stockData, setStockData] = useState(null);
   const [errorDisplay, setErrorDisplay] = useState(null);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     axios
       .get("https://browse-stock-ohlcv-server.onrender.com/")
@@ -86,15 +85,16 @@ function App() {
           )}
           {!errorDisplay && !stockData && (
             <p style={{ color: "red", textAlign: "justify", fontSize: "2vh" }}>
-              <div
+              <span
                 style={{
                   color: "#514e7f",
                   textAlign: "center",
                   fontSize: "3vh",
+                  display: "block",
                 }}
               >
                 Welcome to Browse Stock!
-              </div>
+              </span>
               If this is your first time visiting (or) if you've been inactive
               for 15 minutes, please note that there may be a slight delay of up
               to 2 minutes for the first request as our free server needs to
