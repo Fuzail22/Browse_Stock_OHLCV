@@ -276,6 +276,7 @@ In web Development an event is any action that happens in the browser or more sp
 2. incorrect search result since response is out of order - display only the last request made using reqid(SOLVED)
 3. app gets crashed or hanged due to high volume of data(>34000) that is rendered - reduce the amount of data rendered at any point of time using react-virtualized(SOLVED)
 4. padding causes overflow in the dropdown - use boxsizing property(SOLVED)
+5. loading is not set to false when data not found -
 
 ### Lesser Important Issues
 
