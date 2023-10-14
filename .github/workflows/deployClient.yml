@@ -25,11 +25,12 @@ jobs:
       - name: Install Dependencies
         working-directory: ./client
         run: npm ci
-        env:
-         CI: ""
+        
       - name: Build
         working-directory: ./client
         run: npm run build
+        env:
+         CI: ""
 
       # - name: Deploy
       #   run: |
