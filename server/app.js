@@ -39,14 +39,24 @@ const tickerSchema = new mongoose.Schema({
   ticker: String,
   type: String,
 });
+
 const Stock = mongoose.model("StockList", tickerSchema);
-app.use(cors());
+
+const corsOptions = {
+  exposedHeaders: "X-Request-Id",
+};
+app.use(cors(corsOptions));
+
 app.get("/api/search", async (req, res) => {
   try {
     const searchQuery = req.query.q;
     const regex = new RegExp(searchQuery, "i");
-    const stocks = await Stock.find({ name: regex }).select("name ticker");
+    let stocks = await Stock.find({ name: regex }).select("name ticker");
     console.log("Retrieved From DB");
+    // stocks = stocks.slice(0, 100);
+    // console.log(stocks);
+    console.log(req.headers["x-request-id"], stocks.length);
+    res.setHeader("X-Request-Id", req.headers["x-request-id"]);
     res.json(stocks);
   } catch (error) {
     console.error("Error searching stocks:", error.message);
