@@ -94,7 +94,7 @@ const SearchBar = (props) => {
   }, []);
 
   const debouncedfetch = useMemo(() => {
-    return debounce(fetchSearchResults, 500);
+    return debounce(fetchSearchResults, 300);
   }, [fetchSearchResults]);
 
   useMemo(() => {
