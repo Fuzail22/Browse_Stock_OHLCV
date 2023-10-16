@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Browse_Stock_OHLCV/static/css/main.cd2ee2e3.css",
+    "main.js": "/Browse_Stock_OHLCV/static/js/main.63984f23.js",
+    "index.html": "/Browse_Stock_OHLCV/index.html",
+    "main.cd2ee2e3.css.map": "/Browse_Stock_OHLCV/static/css/main.cd2ee2e3.css.map",
+    "main.63984f23.js.map": "/Browse_Stock_OHLCV/static/js/main.63984f23.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cd2ee2e3.css",
+    "static/js/main.63984f23.js"
+  ]
+}
