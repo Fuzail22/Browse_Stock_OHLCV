@@ -281,3 +281,5 @@ In web Development an event is any action that happens in the browser or more sp
 ### Lesser Important Issues
 
 1. Why searchbar inside stock Form? can't we place it inside formcontainer for a common css
+2. Loading animation doesn't stop on error response. (SOLVED)
+3. Show waiting time info only while loading (SOLVED)
